@@ -1,1 +1,30 @@
 /*styles*/
+.logo{
+  font-size: 5em;
+  text-align: center;
+}
+
+.start{
+  text-align: center;
+}
+
+.player{
+  display: inline-block;
+}
+.players{
+  text-align: center;
+  /*margin: auto;*/
+}
+.player1{
+
+}
+.player2{
+
+}
+.roll{
+  text-align: center;
+}
+.result{
+  text-align: center;
+  font-size: 2em;
+}
