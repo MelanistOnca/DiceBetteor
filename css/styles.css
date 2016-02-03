@@ -29,3 +29,15 @@
   text-align: center;
   font-size: 2em;
 }
+.score{
+  text-align: center;
+  margin: auto;
+}
+
+.playerLabel{
+  text-align: center;
+}
+
+.currentScore {
+  text-align: center;
+}
