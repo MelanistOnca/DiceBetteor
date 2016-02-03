@@ -41,3 +41,7 @@
 .currentScore {
   text-align: center;
 }
+
+.resultField {
+  background-color: grey;
+}
