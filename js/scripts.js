@@ -5,12 +5,6 @@
 var game;
 var dice;
 
-//outside onload
-// var startGame = function () {
-//   game.score.player1Wins=0;
-//   game.score.player2Wins=0;
-//   //loop for n players? keys.game.score.'player'+i+'Wins = 0;
-// }
 
 
 
@@ -30,11 +24,25 @@ $(function(){
     startG: startGame,
     }
 
-function Dice(){
-  this.sides = 2;
-}
 
-  dice = new Dice();
+//code excised from Dice.
+    // this.set = function(int){
+    //    if(int<2){
+    //     console.log('Dice with less than 2 sides not allowed. (Also impossible) Your dice is a coin now.');
+    //     this.sides = 2;
+    //   } else if(int>2){
+    //     console.log('We set your dice side number to the nearest whole number to what you entered.')
+    //     this.sides = Math.round(int);
+    //   } else {
+    //     console.log('looks like you did not enter a number.')
+    //   }
+    // }
+
+
+
+
+
+
 
 
   //
@@ -65,19 +73,7 @@ console.log('document loaded');
 function roundScore (){
 //check for wins, increment scores accordingly.
 
-//indented pegged for removal
-        // if( $('.currentScore1').text() !== 'SCORE'){
-        //   // console.log('.currentScore1 is not equal to SCORE');
-        // } else{
-        //
-        //   $('.currentScore1').text('0');
-        // }
-  //what i think i'm doing with these functions is setting the currentScore fields to 0. almost certainly a better way to do this. In fact, after just typing this, I should initialize them to 0 in the html. but now i want to see if my logic works, so i'll do that later.
-        // if( $('.currentScore2').text() !== 'SCORE'){
-        //   // console.log('.currentScore2 is not equal to SCORE');
-        // } else{
-        //   $('.currentScore2').text('0');
-        // }
+
 
   if($('.p1Chooser')[0].value!==$('.resultField').text() ){//the condition here pops an error on load.
 
@@ -133,17 +129,58 @@ function delay(){
   $('.resultField').css('background-color','grey'),700;
 } //flashes the result background-color to indicate new result/successful roll
 
+function Dice(int){
+  //this.sides = 2;
+  //need to design the page/js so only INT values are passed through, avoiding the need to check.
+  this.sides = int;
+}
+
+function diceSizer(){
+
+  dice = new Dice($('.diceChooser')[0].value)
+  //needs to change .p1Chooser and .p2Chooser to allow for full dice size selection. added playerSideChooser to see if i can just use that.
+  adjustChoosers() ;
+}
+
+function adjustChoosers(  ) {
+  //var pChoose = $('.playerSideChooser')
+  for(var i=0;i<( parseInt(dice.sides)+1 );i++){
+     $('.playerSideChooser').append('<option>');
+     if(i==0){
+       $('.playerSideChooser option:first-child').attr('value',i);
+       $('.playerSideChooser option:first-child').text('')
+     } else{
+     $('.playerSideChooser option:nth-child('+(i+1)+')').attr('value',''+(i));
+     $('.playerSideChooser option:nth-child('+(i+1)+')').text(i);
+     console.log('adjustChoosers loop ' +i + 'th i');
+   }
+  }//getting double the number of options intended. may be due to 2 elements with class '.playerSideChooser'. may need to loop for something like var c=$('.playerSideChooser').length then loop inside of that? maybe divide the conditional by the .length?
+  //use first-child and last-child?
+}
+
+
+
+//changing the number of players will require additional 'player containers'. I should be able to set up a player identifier interface to change labels, and scale to n. then can use these labels to dictate further item generation (chooser/scoreboard).
+
+//changing the number of dice will require creation of additional Choosers(initially just playerChoosers, and possibly later size choosers. would also need to rework scoring, i think. to check for EACH match rather than A match. maybe stick with just one player number choice.)
+
 function startGame() {
   console.log(game.score);
   game.score.player1Wins=0;
   game.score.player2Wins=0;
+
   $('.currentScore1').text('0');
   $('.currentScore2').text('0');
   $('.resultField').text('ROLL AWAY');
-  $('.p1Chooser')[0].value=0;
-  $('.p2Chooser')[0].value=0;
+  $('.playerSideChooser').empty();
+  // $('.p1Chooser')[0].value=0;
+  // $('.p2Chooser')[0].value=0;
+  diceSizer();
+  //select dice size. call function.
+  //$('.p1Chooser')[0].value
 
 
+  //dice = new Dice();
   console.log('scores set to 0, callback');
 }
 
