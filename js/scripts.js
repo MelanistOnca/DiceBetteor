@@ -38,11 +38,9 @@ $(function(){
     //   }
     // }
 
-function Dice(int){
-  //this.sides = 2;
-  //need to design the page/js so only INT values are passed through, avoiding the need to check.
-  this.sides = int;
-}
+
+
+
 
 
 
@@ -143,6 +141,16 @@ function delay(){
   $('.resultField').css('background-color','grey'),700;
 } //flashes the result background-color to indicate new result/successful roll
 
+function Dice(int){
+  //this.sides = 2;
+  //need to design the page/js so only INT values are passed through, avoiding the need to check.
+  this.sides = int;
+}
+
+function diceSizer(){
+  dice = new Dice($('.diceChooser')[0].value)
+}
+
 function startGame() {
   console.log(game.score);
   game.score.player1Wins=0;
@@ -152,9 +160,12 @@ function startGame() {
   $('.resultField').text('ROLL AWAY');
   $('.p1Chooser')[0].value=0;
   $('.p2Chooser')[0].value=0;
+  diceSizer();
+  //select dice size. call function.
+  //$('.p1Chooser')[0].value
+
+
   //dice = new Dice();
-
-
   console.log('scores set to 0, callback');
 }
 
