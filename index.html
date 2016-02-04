@@ -3,8 +3,102 @@
   <head>
     <meta charset="utf-8">
     <title></title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css">
+    <!-- skeleton CSS stuff taken from  http://getskeleton.com/  -->
+
+    <link rel="stylesheet" href="./css/styles.css" media="screen" title="no title" charset="utf-8">
+
+    <script src="./js/jquery-2.2.0.min.js" charset="utf-8"></script>
+    <script src="./js/scripts.js" charset="utf-8"></script>
   </head>
   <body>
+
+
+
+    <!--  actual work below here -->
+
+    <div class="actualWork container">
+      <div class="logo container">
+        Betteor Dice
+      </div>
+      <div class="start container">
+        <button type="button" name="start">Start a game!</button>
+      </div>
+      <div class="row players ">
+
+
+        <div class="player player1 container one-half column u-max-full-width ">
+          <h2>Player 1</h2>
+          <label for="p1DiceChoice">Pick your result:</label>
+          <select class="p1Chooser" name="p1Drop">
+            <option value="0"></option>
+            <option  value="1">1</option>
+            <option  value="2">2</option>
+          </select>
+        </div>
+
+        <div class="player player2 container one-half column u-max-full-width ">
+          <h2>Player 2</h2>
+          <label for="p2DiceChoice">Pick your result:</label>
+          <select class="p2Chooser" name="p2Drop">
+            <option value="0"></option>
+            <option  value="1">1</option>
+            <option  value="2">2</option>
+          </select>
+        </div>
+
+      </div>
+      <div class="roll container">
+        <button type="button" name="button">No whammy!
+        </button>
+      <br>  (this means roll)
+      </div>
+      <div class="result container">
+
+
+
+        <p>
+          Here's the result!:
+        </p>
+        <p class="resultField">Get to rollin'!</p>
+
+      </div>
+      <div class="score container">
+        <div  > <!-- class="players score container" -->
+
+          <table class="container">
+            <!-- <thead>
+              <tr>
+                Scores
+              </tr>
+            </thead> -->
+            <tbody class="players score container u-full-width">
+              <tr><!-- this will need to be procedurally generated when player number is a variable. -->
+                <td class="playerLabel playerLabel1">
+                  Player 1
+                </td>
+                <td class="playerLabel playerLabel2">
+                  Player 2
+                </td>
+              </tr>
+              <tr>
+
+                <td class="currentScore currentScore1">
+                  0
+                </td>
+                <td class="currentScore currentScore2">
+                  0
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+
+      </div>
+
+
+    </div> <!-- end of actualWork container div -->
 
   </body>
 </html>
