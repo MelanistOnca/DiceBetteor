@@ -73,19 +73,7 @@ console.log('document loaded');
 function roundScore (){
 //check for wins, increment scores accordingly.
 
-//indented pegged for removal
-        // if( $('.currentScore1').text() !== 'SCORE'){
-        //   // console.log('.currentScore1 is not equal to SCORE');
-        // } else{
-        //
-        //   $('.currentScore1').text('0');
-        // }
-  //what i think i'm doing with these functions is setting the currentScore fields to 0. almost certainly a better way to do this. In fact, after just typing this, I should initialize them to 0 in the html. but now i want to see if my logic works, so i'll do that later.
-        // if( $('.currentScore2').text() !== 'SCORE'){
-        //   // console.log('.currentScore2 is not equal to SCORE');
-        // } else{
-        //   $('.currentScore2').text('0');
-        // }
+
 
   if($('.p1Chooser')[0].value!==$('.resultField').text() ){//the condition here pops an error on load.
 
@@ -148,18 +136,39 @@ function Dice(int){
 }
 
 function diceSizer(){
+
   dice = new Dice($('.diceChooser')[0].value)
+  //needs to change .p1Chooser and .p2Chooser to allow for full dice size selection. added playerSideChooser to see if i can just use that.
+  adjustChoosers() ;
+}
+
+function adjustChoosers(  ) {
+  //var pChoose = $('.playerSideChooser')
+  for(var i=0;i<( parseInt(dice.sides)+1 );i++){
+     $('.playerSideChooser').append('<option>');
+     if(i==0){
+       $('.playerSideChooser option:first-child').attr('value',i);
+       $('.playerSideChooser option:first-child').text('')
+     } else{
+     $('.playerSideChooser option:nth-child('+(i+1)+')').attr('value',''+(i));
+     $('.playerSideChooser option:nth-child('+(i+1)+')').text(i);
+     console.log('adjustChoosers loop ' +i + 'th i');
+   }
+  }//getting double the number of options intended. may be due to 2 elements with class '.playerSideChooser'. may need to loop for something like var c=$('.playerSideChooser').length then loop inside of that? maybe divide the conditional by the .length?
+  //use first-child and last-child?
 }
 
 function startGame() {
   console.log(game.score);
   game.score.player1Wins=0;
   game.score.player2Wins=0;
+
   $('.currentScore1').text('0');
   $('.currentScore2').text('0');
   $('.resultField').text('ROLL AWAY');
-  $('.p1Chooser')[0].value=0;
-  $('.p2Chooser')[0].value=0;
+  $('.playerSideChooser').empty();
+  // $('.p1Chooser')[0].value=0;
+  // $('.p2Chooser')[0].value=0;
   diceSizer();
   //select dice size. call function.
   //$('.p1Chooser')[0].value
