@@ -158,6 +158,12 @@ function adjustChoosers(  ) {
   //use first-child and last-child?
 }
 
+
+
+//changing the number of players will require additional 'player containers'. I should be able to set up a player identifier interface to change labels, and scale to n. then can use these labels to dictate further item generation (chooser/scoreboard).
+
+//changing the number of dice will require creation of additional Choosers(initially just playerChoosers, and possibly later size choosers. would also need to rework scoring, i think. to check for EACH match rather than A match. maybe stick with just one player number choice.)
+
 function startGame() {
   console.log(game.score);
   game.score.player1Wins=0;
