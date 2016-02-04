@@ -65,18 +65,19 @@ console.log('document loaded');
 function roundScore (){
 //check for wins, increment scores accordingly.
 
-  if( $('.currentScore1').text() !== 'SCORE'){
-    // console.log('.currentScore1 is not equal to SCORE');
-  } else{
-
-    $('.currentScore1').text('0');
-  }
-  //what i think i'm doing with these functions is setting the currentScore fiels to 0. almost certainly a better way to do this. In fact, after just typing this, I should initialize them to 0 in the html. but now i want to see if my logic works, so i'll do that later.
-  if( $('.currentScore2').text() !== 'SCORE'){
-    // console.log('.currentScore2 is not equal to SCORE');
-  } else{
-    $('.currentScore2').text('0');
-  }
+//indented pegged for removal
+        // if( $('.currentScore1').text() !== 'SCORE'){
+        //   // console.log('.currentScore1 is not equal to SCORE');
+        // } else{
+        //
+        //   $('.currentScore1').text('0');
+        // }
+  //what i think i'm doing with these functions is setting the currentScore fields to 0. almost certainly a better way to do this. In fact, after just typing this, I should initialize them to 0 in the html. but now i want to see if my logic works, so i'll do that later.
+        // if( $('.currentScore2').text() !== 'SCORE'){
+        //   // console.log('.currentScore2 is not equal to SCORE');
+        // } else{
+        //   $('.currentScore2').text('0');
+        // }
 
   if($('.p1Chooser')[0].value!==$('.resultField').text() ){//the condition here pops an error on load.
 
@@ -101,13 +102,15 @@ function roundScore (){
     console.log('p2 did not match. no points earned');
   }
   //start of win check in roundScore
-if( (game.score.player1Wins === 3) && (game.score.player2Wins === 3) ){
+if( (game.score.player1Wins >= 3) && (game.score.player2Wins >= 3) ){
   console.log('The game is over! You tied! The game will start over now.');
   startGame();
-} else if( game.score.player1Wins === 3 ){
+} else if( game.score.player1Wins >= 3 ){
   console.log('Player 1 has won! Click the start button to play again.');
-} else if( game.score.player2Wins === 3 ){
+  alert('Player 1 has won! Click the start button to play again');
+} else if( game.score.player2Wins >= 3 ){
   console.log('Player 2 has won! Click the start button to play again');
+  alert('Player 2 has won! Click the start button to play again');
 //game victory check. this will need to scale when player number is editable.
 } else {
   console.log('victory not yet achieved.');
@@ -134,7 +137,13 @@ function startGame() {
   console.log(game.score);
   game.score.player1Wins=0;
   game.score.player2Wins=0;
-  console.log('needs to update score text fields');
+  $('.currentScore1').text('0');
+  $('.currentScore2').text('0');
+  $('.resultField').text('ROLL AWAY');
+  $('.p1Chooser')[0].value=0;
+  $('.p2Chooser')[0].value=0;
+
+
   console.log('scores set to 0, callback');
 }
 
