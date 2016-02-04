@@ -5,12 +5,6 @@
 var game;
 var dice;
 
-//outside onload
-// var startGame = function () {
-//   game.score.player1Wins=0;
-//   game.score.player2Wins=0;
-//   //loop for n players? keys.game.score.'player'+i+'Wins = 0;
-// }
 
 
 
@@ -30,11 +24,27 @@ $(function(){
     startG: startGame,
     }
 
-function Dice(){
-  this.sides = 2;
+
+//code excised from Dice.
+    // this.set = function(int){
+    //    if(int<2){
+    //     console.log('Dice with less than 2 sides not allowed. (Also impossible) Your dice is a coin now.');
+    //     this.sides = 2;
+    //   } else if(int>2){
+    //     console.log('We set your dice side number to the nearest whole number to what you entered.')
+    //     this.sides = Math.round(int);
+    //   } else {
+    //     console.log('looks like you did not enter a number.')
+    //   }
+    // }
+
+function Dice(int){
+  //this.sides = 2;
+  //need to design the page/js so only INT values are passed through, avoiding the need to check.
+  this.sides = int;
 }
 
-  dice = new Dice();
+
 
 
   //
@@ -142,6 +152,7 @@ function startGame() {
   $('.resultField').text('ROLL AWAY');
   $('.p1Chooser')[0].value=0;
   $('.p2Chooser')[0].value=0;
+  //dice = new Dice();
 
 
   console.log('scores set to 0, callback');
