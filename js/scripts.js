@@ -211,9 +211,12 @@ function playerNumbers(){
 // } else{
   for(var i=1; i<(game.playerCount+1);i++){
     $('.row').append('<div>');
+    console.log('appended div ' +i+ ' times');
     //code removed here
     $('.row div:nth-child('+i+')').append('<h2>').addClass("player player"+i+" container one-half column u-max-full-width ");
-    $('.h2').eq((i-1)).text='Player '+i;
+    console.log('appended h2 and added class names ' +i+ ' times');
+    $('h2').eq((i-1)).text('Player '+i);
+    console.log('changed the text on h2 ' +i+ ' times');
     //attr('value',i);
     // $('.row div:nth-child('+i+')').text(i);
     console.log('adjustChoosers loop ' +i + 'th i');
