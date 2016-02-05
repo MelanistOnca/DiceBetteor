@@ -11,14 +11,18 @@ var dice;
 //outside onload
 
 $(function(){
-  //onload functions?
+  //onload functions
 
   game = {
     rounds: 3,
     playerCount: 2,
     players: {
-
+      1: {
+        name: '',
+        score: 0,
+      }
     },
+    //below probably goes dodo once "players" object is functional.
     player1: 'Player 1',
     player2: 'Player 2',
     score: {
@@ -52,9 +56,11 @@ $(function(){
   //
  ////
 //EVENT LISTENERS START HERE
-$('button').eq(0).on('click', game.startG);
-$('button').eq(1).on('click', resultFieldUpdate);
-$('button').eq(1).on('click', roundScore(game.playerCount));
+$('button').eq(0).on('click', game.startG );
+$('button').eq(1).on('click', resultFieldUpdate );
+$('button').eq(1).on('click', function(){
+  roundScore(game.playerCount) ;
+});
 
 
 
@@ -74,7 +80,12 @@ console.log('document loaded');
 
   //on roll, compare result to pNChooser, modify scores
   // $('button').eq(0).on('click',)
-function roundScore (playNum){
+function Player(n,id) {
+  //will need to set default players to 0 for the planned iteration to make sense.
+  game.players.n.name = id;
+}
+
+function roundScore (/*playNum*/){
 //check for wins, increment scores accordingly.
 
 
@@ -82,12 +93,14 @@ function roundScore (playNum){
   if($('.p1Chooser')[0].value!==$('.resultField').text() ){
     console.log(game.score);
     console.log('p1 did not match. no points earned');
-  } else ($('.p1Chooser')[0].value===$('.resultField').text()){
+  } else if($('.p1Chooser')[0].value===$('.resultField').text()){
     game.score.player1Wins++;
     console.log(game.score);
     $('.currentScore1').text(game.score.player1Wins);
-  }
-//the checkers here are identical except for player number. generalize this to make the player number check managable.
+  } else {
+    console.log('you done $^#%ed up.')
+  };
+//the checkers here are functionally identical except for player number. generalize p2 to make the player number check managable. p2 is better code than p1 check.
 
   if($('.p2Chooser')[0].value===$('.resultField').text()  ){
 
@@ -97,10 +110,16 @@ function roundScore (playNum){
 
   } else{
     console.log('p2 did not match. no points earned');
-  }
-  //start of win check in roundScore
-if( (game.score.player1Wins >= 3) && (game.score.player2Wins >= 3) ){
+  };
+  winCheck();
+}
+//roundScore();
+//start of win check
+
+function winCheck(){
+  if( (game.score.player1Wins >= 3) && (game.score.player2Wins >= 3) ){
   console.log('The game is over! You tied! The game will start over now.');
+  alert('The game is over! You tied! The game will start over now.');
   startGame();
 } else if( game.score.player1Wins >= 3 ){
   console.log('Player 1 has won! Click the start button to play again.');
@@ -112,9 +131,9 @@ if( (game.score.player1Wins >= 3) && (game.score.player2Wins >= 3) ){
 } else {
   console.log('victory not yet achieved.');
 }
-  //end of win check in roundScore
+  //end of win check
 }
-//roundScore();
+
 
 
 
@@ -147,7 +166,7 @@ function adjustChoosers(  ) {
   //var pChoose = $('.playerSideChooser')
   for(var i=0;i<( parseInt(dice.sides)+1 );i++){
      $('.playerSideChooser').append('<option>');
-     if(i==0){
+     if(i===0){
        $('.playerSideChooser option:first-child').attr('value',i);
        $('.playerSideChooser option:first-child').text('')
      } else{
@@ -165,6 +184,8 @@ function adjustChoosers(  ) {
 
 //omg. this win refactor for n-players is gunna SUUUUUUUUUUUCK. need to adjust roundScore().
 
+//roundScore is unweildy. i should break it up into smaller functions.
+
 function playerNumbers(){
   game.playerCount = $('.playerChooser')[0].value;
   //create more player container div elements, including p1dicechoice, p1chooser. also player columns in players score container
@@ -181,7 +202,7 @@ function playerNumbers(){
   }
 }
 
-
+}//end of playerNumbers
 
 
 //changing the number of dice will require creation of additional Choosers(initially just playerChoosers, and possibly later size choosers. would also need to rework scoring, i think. to check for EACH match rather than A match. maybe stick with just one player number choice.)
