@@ -61,6 +61,7 @@ $('button').eq(1).on('click', resultFieldUpdate );
 $('button').eq(1).on('click', function(){
   roundScore(game.playerCount) ;
 });
+//$('button').eq(0).on('click', )
 
 
 
@@ -280,8 +281,9 @@ function startGame() {
   diceSizer();
   //select dice size. call function.
   //$('.p1Chooser')[0].value
-
-
+  console.log('before playerNumbers()');
+  playerNumbers(); //this is happening 10x for some reason.
+  console.log('after playerNumbers()');
   //dice = new Dice();
   console.log('scores set to 0, callback');
 }
