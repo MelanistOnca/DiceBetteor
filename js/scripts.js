@@ -15,6 +15,10 @@ $(function(){
 
   game = {
     rounds: 3,
+    playerCount: 2,
+    players: {
+
+    },
     player1: 'Player 1',
     player2: 'Player 2',
     score: {
@@ -70,23 +74,20 @@ console.log('document loaded');
 
   //on roll, compare result to pNChooser, modify scores
   // $('button').eq(0).on('click',)
-function roundScore (){
+function roundScore (playNum){
 //check for wins, increment scores accordingly.
 
 
 
-  if($('.p1Chooser')[0].value!==$('.resultField').text() ){//the condition here pops an error on load.
-
+  if($('.p1Chooser')[0].value!==$('.resultField').text() ){
     console.log(game.score);
     console.log('p1 did not match. no points earned');
-  } else if($('.p1Chooser')[0].value===$('.resultField').text()){
+  } else ($('.p1Chooser')[0].value===$('.resultField').text()){
     game.score.player1Wins++;
     console.log(game.score);
     $('.currentScore1').text(game.score.player1Wins);
-  } else {
-    console.log('you are in the player1 score check land of the dead, where the living should not be.');
   }
-//using if (!not thing){nothing} else if (thing){do stuff} else{the world is broken}
+//the checkers here are identical except for player number. generalize this to make the player number check managable.
 
   if($('.p2Chooser')[0].value===$('.resultField').text()  ){
 
@@ -160,9 +161,20 @@ function adjustChoosers(  ) {
 
 
 
-//changing the number of players will require additional 'player containers'. I should be able to set up a player identifier interface to change labels, and scale to n. then can use these labels to dictate further item generation (chooser/scoreboard).
+//changing the number of players will require additional 'player containers'. I should be able to set up a player identifier interface to change labels, and scale to n. then can use these labels to dictate further item generation (chooser/scoreboard). ALSO win conditions will need to be generalized.
+
+//omg. this win refactor for n-players is gunna SUUUUUUUUUUUCK. need to adjust roundScore().
+
+function playerNumbers(){
+  $('.playerChooser')[0].value
+}
+
+
+
 
 //changing the number of dice will require creation of additional Choosers(initially just playerChoosers, and possibly later size choosers. would also need to rework scoring, i think. to check for EACH match rather than A match. maybe stick with just one player number choice.)
+
+//for dice animations, will probably have to skip 3d aspirations. use 2d imagines, with shifting placeholder characters like #%*@ before result is shown on top "edge"
 
 function startGame() {
   console.log(game.score);
