@@ -83,24 +83,35 @@ console.log('document loaded');
 function Player(n,id) {
   //will need to set default players to 0 for the planned iteration to make sense.
   game.players.n.name = id;
+  game.playerCount++;
 }
 
-function roundScore (/*playNum*/){
+function roundScore (playNum){
 //check for wins, increment scores accordingly.
 
+// if($('.p1Chooser')[0].value!==$('.resultField').text() ){
+//   console.log(game.score);
+//   console.log('p1 did not match. no points earned');
+// } else if($('.p1Chooser')[0].value===$('.resultField').text()){
+//   game.score.player1Wins++;
+//   console.log(game.score);
+//   $('.currentScore1').text(game.score.player1Wins);
+// } else {
+//   console.log('you done $^#%ed up.')
+// };
+for(var i=0;i<game.playerCount;i++){
 
-
-  if($('.p1Chooser')[0].value!==$('.resultField').text() ){
-    console.log(game.score);
-    console.log('p1 did not match. no points earned');
-  } else if($('.p1Chooser')[0].value===$('.resultField').text()){
-    game.score.player1Wins++;
-    console.log(game.score);
-    $('.currentScore1').text(game.score.player1Wins);
-  } else {
-    console.log('you done $^#%ed up.')
-  };
 //the checkers here are functionally identical except for player number. generalize p2 to make the player number check managable. p2 is better code than p1 check.
+
+//   $('.playerSideChooser').append('<option>');
+//   if(i===0){
+//     $('.playerSideChooser option:first-child').attr('value',i);
+//     $('.playerSideChooser option:first-child').text('')
+//   } else{
+//   $('.playerSideChooser option:nth-child('+(i+1)+')').attr('value',''+(i));
+//   $('.playerSideChooser option:nth-child('+(i+1)+')').text(i);
+//   console.log('adjustChoosers loop ' +i + 'th i');
+//
 
   if($('.p2Chooser')[0].value===$('.resultField').text()  ){
 
@@ -111,7 +122,10 @@ function roundScore (/*playNum*/){
   } else{
     console.log('p2 did not match. no points earned');
   };
+
+
   winCheck();
+}
 }
 //roundScore();
 //start of win check
@@ -189,18 +203,35 @@ function adjustChoosers(  ) {
 function playerNumbers(){
   game.playerCount = $('.playerChooser')[0].value;
   //create more player container div elements, including p1dicechoice, p1chooser. also player columns in players score container
-  for(var i=0; i<game.playerCount;i++){
+
+//removed code from below for loop// $('.row div:nth-child(3)').attr('test','test')
+// if(i===0){
+//   $('.row div:first-child').attr('value',i);
+//   $('.playerSideChooser option:first-child').text('')
+// } else{
+  for(var i=1; i<(game.playerCount+1);i++){
     $('.row').append('<div>');
-    // $('.row div:nth-child(3)').attr('test','test')
-    if(i==0){
-      $('.row div:first-child').attr('value',i);
-      $('.playerSideChooser option:first-child').text('')
-    } else{
-    $('.playerSideChooser option:nth-child('+(i+1)+')').attr('value',''+(i));
-    $('.playerSideChooser option:nth-child('+(i+1)+')').text(i);
+    //code removed here
+    $('.row div:nth-child('+i+')').append('<h2>').addClass("player player"+i+" container one-half column u-max-full-width ");
+    $('.h2').eq((i-1)).text='Player '+i;
+    //attr('value',i);
+    // $('.row div:nth-child('+i+')').text(i);
     console.log('adjustChoosers loop ' +i + 'th i');
-  }
+    //code removed here
 }
+// code removed from above for loop at bottom(just above closing brace)
+// }
+
+
+//   $('.playerSideChooser').append('<option>');
+//   if(i===0){
+//     $('.playerSideChooser option:first-child').attr('value',i);
+//     $('.playerSideChooser option:first-child').text('')
+//   } else{
+//   $('.playerSideChooser option:nth-child('+(i+1)+')').attr('value',''+(i));
+//   $('.playerSideChooser option:nth-child('+(i+1)+')').text(i);
+//   console.log('adjustChoosers loop ' +i + 'th i');
+//
 
 }//end of playerNumbers
 
