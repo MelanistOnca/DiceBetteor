@@ -213,11 +213,17 @@ function playerNumbers(){
     $('.row').append('<div>');
     console.log('appended div ' +i+ ' times');
     //code removed here
-    $('.row div:nth-child('+i+')').append('<h2>').addClass("player player"+i+" container one-half column u-max-full-width ");
+    $('.row div:nth-child(' +i+ ')').append('<h2>').addClass("player player"+i+" container one-half column u-max-full-width ");
     console.log('appended h2 and added class names ' +i+ ' times');
-    $('h2').eq((i-1)).text('Player '+i);
+    $('h2').eq( (i-1) ).text('Player '+i);
     console.log('changed the text on h2 ' +i+ ' times');
+    $('.row div:nth-child(' +i+ ')').append('<label>');
+    $('label').eq( (i+1) ).attr('for','p'+i+'DiceChoice').text('Pick your result:');//i+1 is because of previous labels- playerNumber and selectDice.
     //attr('value',i);
+    console.log('player choice label added for iteration ' +i);
+    $('.row div:nth-child(' +i+ ')').append('<select>');
+    $('label').eq( (i+1) ).addClass("p1Chooser playerSideChooser").attr('name','p'+i+'Drop');//i+1 is because of previous selects- playerChooser and diceChooser.
+    console.log('player chooser select added for iteration' +i);
     // $('.row div:nth-child('+i+')').text(i);
     console.log('adjustChoosers loop ' +i + 'th i');
     //code removed here
