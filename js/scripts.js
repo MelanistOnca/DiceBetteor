@@ -54,7 +54,7 @@ $(function(){
 //EVENT LISTENERS START HERE
 $('button').eq(0).on('click', game.startG);
 $('button').eq(1).on('click', resultFieldUpdate);
-$('button').eq(1).on('click', roundScore);
+$('button').eq(1).on('click', roundScore(game.playerCount));
 
 
 
@@ -166,7 +166,19 @@ function adjustChoosers(  ) {
 //omg. this win refactor for n-players is gunna SUUUUUUUUUUUCK. need to adjust roundScore().
 
 function playerNumbers(){
-  $('.playerChooser')[0].value
+  game.playerCount = $('.playerChooser')[0].value;
+  //create more player container div elements, including p1dicechoice, p1chooser. also player columns in players score container
+  for(var i=0; i<game.playerCount;i++){
+    $('.row').append('<div>');
+    // $('.row div:nth-child(3)').attr('test','test')
+    if(i==0){
+      $('.row div:first-child').attr('value',i);
+      $('.playerSideChooser option:first-child').text('')
+    } else{
+    $('.playerSideChooser option:nth-child('+(i+1)+')').attr('value',''+(i));
+    $('.playerSideChooser option:nth-child('+(i+1)+')').text(i);
+    console.log('adjustChoosers loop ' +i + 'th i');
+  }
 }
 
 
