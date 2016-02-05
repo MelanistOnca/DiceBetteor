@@ -209,23 +209,40 @@ function playerNumbers(){
 //   $('.row div:first-child').attr('value',i);
 //   $('.playerSideChooser option:first-child').text('')
 // } else{
-  for(var i=1; i<(game.playerCount+1);i++){
-    $('.row').append('<div>');
-    console.log('appended div ' +i+ ' times');
-    //code removed here
-    $('.row div:nth-child(' +i+ ')').append('<h2>').addClass("player player"+i+" container one-half column u-max-full-width ");
+  function addDiv(){
+    $('.row').append('<div>');//adds div
+    console.log('appended div ');
+  }
+  function addH2AndClassIt(i){
+    $('.row div:nth-child(' +i+ ')').append('<h2>').addClass("player player"+i+" container one-half column u-max-full-width ");//adds h2 to div and classes h2
     console.log('appended h2 and added class names ' +i+ ' times');
-    $('h2').eq( (i-1) ).text('Player '+i);
+  }
+
+  function putTextInH2(i){
+    $('h2').eq( (i-1) ).text('Player '+i);//puts text inside the h2
     console.log('changed the text on h2 ' +i+ ' times');
-    $('.row div:nth-child(' +i+ ')').append('<label>');
-    $('label').eq( (i+1) ).attr('for','p'+i+'DiceChoice').text('Pick your result:');//i+1 is because of previous labels- playerNumber and selectDice.
+  }
+
+  function addLabelAndTextItAndAttrIt(i){
+    $('.row div:nth-child(' +i+ ')').append('<label>');//adds label to div
+    $('label').eq( (i+1) ).attr('for','p'+i+'DiceChoice').text('Pick your result:');//i+1 is because of previous labels- playerNumber and selectDice. //add text to label
     //attr('value',i);
     console.log('player choice label added for iteration ' +i);
-    $('.row div:nth-child(' +i+ ')').append('<select>');
-    $('label').eq( (i+1) ).addClass("p1Chooser playerSideChooser").attr('name','p'+i+'Drop');//i+1 is because of previous selects- playerChooser and diceChooser.
-    console.log('player chooser select added for iteration' +i);
+    $('.row div:nth-child(' +i+ ')').append('<select>');//adds select to div
+    $('label').eq( (i+1) ).addClass("p"+i+"Chooser playerSideChooser").attr('name','p'+i+'Drop');//i+1 is because of previous selects- playerChooser and diceChooser. //classes select and tries to add name attribute
+  }
+
+  for(var i=1; i<(game.playerCount+1);i++){
+    addDiv(i);
+    addH2AndClassIt(i);
+    putTextInH2(i);
+    addLabelAndTextItAndAttrIt(i);
+
+    //code removed here
+
+    // console.log('player chooser select added for iteration' +i);
     // $('.row div:nth-child('+i+')').text(i);
-    console.log('adjustChoosers loop ' +i + 'th i');
+    // console.log('adjustChoosers loop ' +i + 'th i');
     //code removed here
 }
 // code removed from above for loop at bottom(just above closing brace)
