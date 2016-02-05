@@ -100,6 +100,7 @@ function roundScore (){
   //start of win check in roundScore
 if( (game.score.player1Wins >= 3) && (game.score.player2Wins >= 3) ){
   //console.log('The game is over! You tied! The game will start over now.');
+  alert('The game is over! You tied! The game will start over now.');
   startGame();
 } else if( game.score.player1Wins >= 3 ){
   //console.log('Player 1 has won! Click the start button to play again.');
