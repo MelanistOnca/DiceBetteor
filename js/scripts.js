@@ -1,4 +1,4 @@
-// console.log('scripts.js loaded');
+// //console.log('scripts.js loaded');
 //functions
 
 
@@ -28,13 +28,13 @@ $(function(){
 //code excised from Dice.
     // this.set = function(int){
     //    if(int<2){
-    //     console.log('Dice with less than 2 sides not allowed. (Also impossible) Your dice is a coin now.');
+    //     //console.log('Dice with less than 2 sides not allowed. (Also impossible) Your dice is a coin now.');
     //     this.sides = 2;
     //   } else if(int>2){
-    //     console.log('We set your dice side number to the nearest whole number to what you entered.')
+    //     //console.log('We set your dice side number to the nearest whole number to what you entered.')
     //     this.sides = Math.round(int);
     //   } else {
-    //     console.log('looks like you did not enter a number.')
+    //     //console.log('looks like you did not enter a number.')
     //   }
     // }
 
@@ -55,7 +55,7 @@ $('button').eq(1).on('click', roundScore);
 
 
 
-console.log('document loaded');
+//console.log('document loaded');
 });
 
 //EVENT LISTENERS END HERE
@@ -77,39 +77,39 @@ function roundScore (){
 
   if($('.p1Chooser')[0].value!==$('.resultField').text() ){//the condition here pops an error on load.
 
-    console.log(game.score);
-    console.log('p1 did not match. no points earned');
+    //console.log(game.score);
+    //console.log('p1 did not match. no points earned');
   } else if($('.p1Chooser')[0].value===$('.resultField').text()){
     game.score.player1Wins++;
-    console.log(game.score);
+    //console.log(game.score);
     $('.currentScore1').text(game.score.player1Wins);
   } else {
-    console.log('you are in the player1 score check land of the dead, where the living should not be.');
+    //console.log('you are in the player1 score check land of the dead, where the living should not be.');
   }
 //using if (!not thing){nothing} else if (thing){do stuff} else{the world is broken}
 
   if($('.p2Chooser')[0].value===$('.resultField').text()  ){
 
     game.score.player2Wins++;
-    console.log(game.score);
+    //console.log(game.score);
     $('.currentScore2').text(game.score.player2Wins);
 
   } else{
-    console.log('p2 did not match. no points earned');
+    //console.log('p2 did not match. no points earned');
   }
   //start of win check in roundScore
 if( (game.score.player1Wins >= 3) && (game.score.player2Wins >= 3) ){
-  console.log('The game is over! You tied! The game will start over now.');
+  //console.log('The game is over! You tied! The game will start over now.');
   startGame();
 } else if( game.score.player1Wins >= 3 ){
-  console.log('Player 1 has won! Click the start button to play again.');
+  //console.log('Player 1 has won! Click the start button to play again.');
   alert('Player 1 has won! Click the start button to play again');
 } else if( game.score.player2Wins >= 3 ){
-  console.log('Player 2 has won! Click the start button to play again');
+  //console.log('Player 2 has won! Click the start button to play again');
   alert('Player 2 has won! Click the start button to play again');
 //game victory check. this will need to scale when player number is editable.
 } else {
-  console.log('victory not yet achieved.');
+  //console.log('victory not yet achieved.');
 }
   //end of win check in roundScore
 }
@@ -152,7 +152,7 @@ function adjustChoosers(  ) {
      } else{
      $('.playerSideChooser option:nth-child('+(i+1)+')').attr('value',''+(i));
      $('.playerSideChooser option:nth-child('+(i+1)+')').text(i);
-     console.log('adjustChoosers loop ' +i + 'th i');
+     //console.log('adjustChoosers loop ' +i + 'th i');
    }
   }//getting double the number of options intended. may be due to 2 elements with class '.playerSideChooser'. may need to loop for something like var c=$('.playerSideChooser').length then loop inside of that? maybe divide the conditional by the .length?
   //use first-child and last-child?
@@ -165,7 +165,7 @@ function adjustChoosers(  ) {
 //changing the number of dice will require creation of additional Choosers(initially just playerChoosers, and possibly later size choosers. would also need to rework scoring, i think. to check for EACH match rather than A match. maybe stick with just one player number choice.)
 
 function startGame() {
-  console.log(game.score);
+  //console.log(game.score);
   game.score.player1Wins=0;
   game.score.player2Wins=0;
 
@@ -181,7 +181,7 @@ function startGame() {
 
 
   //dice = new Dice();
-  console.log('scores set to 0, callback');
+  //console.log('scores set to 0, callback');
 }
 
  // $('button').eq(0).on('click', game.startG);
