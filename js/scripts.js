@@ -59,7 +59,7 @@ $(function(){
 $('button').eq(0).on('click', game.startG );
 $('button').eq(1).on('click', resultFieldUpdate );
 $('button').eq(1).on('click', function(){
-  roundScore(game.playerCount) ;
+  roundScore(/*game.playerCount*/) ;
 });
 //$('button').eq(0).on('click', )
 
@@ -81,15 +81,16 @@ console.log('document loaded');
 
   //on roll, compare result to pNChooser, modify scores
   // $('button').eq(0).on('click',)
-function Player(n,id) {
-  //will need to set default players to 0 for the planned iteration to make sense.
-  game.players.n.name = id;
-  game.playerCount++;
-}
+        // function Player(n,id) {
+        //   //will need to set default players to 0 for the planned iteration to make sense.
+        //   game.players.n.name = id;
+        //   game.playerCount++;
+        // }
+        //indented to check if source of 10x player number error
 
-function roundScore (playNum){
+function roundScore (/*playNum*/){
 //check for wins, increment scores accordingly.
-
+console.log('roundScore was called.');
 // if($('.p1Chooser')[0].value!==$('.resultField').text() ){
 //   console.log(game.score);
 //   console.log('p1 did not match. no points earned');
@@ -132,6 +133,7 @@ for(var i=0;i<game.playerCount;i++){
 //start of win check
 
 function winCheck(){
+  consol.log('winCheck was called.');
   if( (game.score.player1Wins >= 3) && (game.score.player2Wins >= 3) ){
   console.log('The game is over! You tied! The game will start over now.');
   alert('The game is over! You tied! The game will start over now.');
@@ -153,6 +155,7 @@ function winCheck(){
 
 
 function resultFieldUpdate (){
+  console.log('resultFieldUpdate was called.');
   $('.resultField').css('background-color','orange');
   $('.resultField').text('' + roll());
   setTimeout(delay,50);//this is apparently vanilla javascript, but i couldn't get alternate functionality working through jQuery
@@ -161,23 +164,26 @@ function resultFieldUpdate (){
 //event listener for start button
 //$('button').eq(0) returns a jquery object with 1 element. use this to make listeners. below may be wonky, improve.
 function delay(){
+  console.log('delay was called.');
   $('.resultField').css('background-color','grey'),700;
 } //flashes the result background-color to indicate new result/successful roll
 
 function Dice(int){
+  console.log('Dice was called.');
   //this.sides = 2;
   //need to design the page/js so only INT values are passed through, avoiding the need to check.
   this.sides = int;
 }
 
 function diceSizer(){
-
-  dice = new Dice($('.diceChooser')[0].value)
+  console.log('diceSizer was called.');
+  dice = new Dice($('.diceChooser')[0].value);
   //needs to change .p1Chooser and .p2Chooser to allow for full dice size selection. added playerSideChooser to see if i can just use that.
   adjustChoosers() ;
 }
 
 function adjustChoosers(  ) {
+  console.log('adjustChoosers was called.');
   //var pChoose = $('.playerSideChooser')
   for(var i=0;i<( parseInt(dice.sides)+1 );i++){
      $('.playerSideChooser').append('<option>');
@@ -202,6 +208,7 @@ function adjustChoosers(  ) {
 //roundScore is unweildy. i should break it up into smaller functions.
 
 function playerNumbers(){
+  console.log('playerNumbers was called.');
   game.playerCount = $('.playerChooser')[0].value;
   //create more player container div elements, including p1dicechoice, p1chooser. also player columns in players score container
 
@@ -233,12 +240,16 @@ function playerNumbers(){
     $('label').eq( (i+1) ).addClass("p"+i+"Chooser playerSideChooser").attr('name','p'+i+'Drop');//i+1 is because of previous selects- playerChooser and diceChooser. //classes select and tries to add name attribute
   }
 
-  for(var i=1; i<(game.playerCount+1);i++){
+  for(var i=1; i<( parseInt(game.playerCount) +1);i++){
+    console.log('playerNumers loop ran.');
+    console.log('this is i' + i );
+    console.log('this is game.playerCount ' + game.playerCount);
+    console.log('this is (game.playerCount+1) ' + (game.playerCount+1));
     addDiv(i);
     addH2AndClassIt(i);
     putTextInH2(i);
     addLabelAndTextItAndAttrIt(i);
-
+    console.log('post function calls in playerNumbers loop');
     //code removed here
 
     // console.log('player chooser select added for iteration' +i);
@@ -268,6 +279,7 @@ function playerNumbers(){
 //for dice animations, will probably have to skip 3d aspirations. use 2d imagines, with shifting placeholder characters like #%*@ before result is shown on top "edge"
 
 function startGame() {
+  console.log('startGame was called.');
   console.log(game.score);
   game.score.player1Wins=0;
   game.score.player2Wins=0;
@@ -299,6 +311,7 @@ function startGame() {
 
   //below not being recognized when called from console.
 function roll(){
+  console.log('roll was called');
   return Math.ceil( (Math.random()*dice.sides) );
   } //RNG inspired by khr055 at http://stackoverflow.com/questions/4959975/generate-random-value-between-two-numbers-in-javascript
 
