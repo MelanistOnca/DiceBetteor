@@ -1,4 +1,22 @@
 /*styles*/
+body{
+  background-color: orange;
+}
+
+win{
+  visibility: hidden;
+  text-align: center;
+  position: absolute;
+  margin:auto;
+}
+
+tie{
+  visibility: hidden;
+  text-align: center;
+  position: absolute;
+  margin:auto;
+}
+
 .logo{
   font-size: 5em;
   text-align: center;
@@ -29,9 +47,29 @@
   text-align: center;
   font-size: 2em;
 }
+
 .score{
   text-align: center;
   margin: auto;
+
+}
+
+table{
+  background-color: rgba(250, 117, 42, 0.5);
+  /*border: 5px solid red;*/
+  /*border-collapse: collapse;*/
+  /*border collapse stolen from user Joe Mornin on question found at http://stackoverflow.com/questions/8479090/remove-spacing-between-table-cells-and-rows*/
+  /*cellspacing: 0;*/
+  box-shadow: 0 0 0 3px red;
+}
+.container{
+  border-radius: 30%;
+}
+
+td{
+  /*border: 5px solid red;*/
+  box-shadow: 1px;
+  border-radius: 30%;
 }
 
 .playerLabel{
@@ -43,5 +81,39 @@
 }
 
 .resultField {
+  background-color: #FA752A;
+  border-radius: 50% ;
+}
+
+button{
+
+}
+
+button[name='start'] {
+  background-color: #FAFA34;
+  color: #C7472E;
+  font-size: 1em;
+  position: relative;
+  top: 2px;
+}
+
+button[name='whammy']{
+  background-color: #FF6634;
+  border: 1px solid black;
+  color: #F5E647;
+  font-size: .85em
+}
+
+select[name='diceChooser']{
   background-color: grey;
 }
+
+select .playerSideChooser {
+  background-color: purple;
+}
+
+option{
+  background-color: green;
+}
+
+/*colors from http://www.colorpicker.com/*/

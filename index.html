@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title></title>
+    <title>Dice Game</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css">
     <!-- skeleton CSS stuff taken from  http://getskeleton.com/  -->
 
@@ -19,8 +19,11 @@
 
     <div class="actualWork container">
       <div class="logo container">
-        Betteor Dice
+        Bettor Dice
       </div>
+      <win class="player1win">Player 1 won!</win>
+      <win class="player2win">Player 2 won!</win>
+      <tie>Everybody won! SO YOU ALL LOST!</tie>
       <div class="start container">
 
 
@@ -58,7 +61,7 @@
 
 
 
-            < <option value="0"></option>
+             <!-- <option value="0"></option> -->
           </select>
         </div>
 
@@ -73,11 +76,11 @@
         </div>
 
       </div>
-      <div class="roll container">
-        <button type="button" name="button">No whammy!
+      <whammy class="roll container">
+        <button type="button" name="whammy">No whammy!
         </button>
       <br>  (this means roll)
-      </div>
+    </whammy>
 
       <div class="result container">
 

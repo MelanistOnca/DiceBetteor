@@ -25,7 +25,9 @@ $(function(){
       player1Wins: 0,
       player2Wins: 0,
     },
-    startG: startGame,
+    // startG: function(){
+    //   startGame;
+    // },
     }
 
 
@@ -48,7 +50,12 @@ $(function(){
 // });
 // //$('button').eq(0).on('click', )
 // =======
-$('button').eq(0).on('click', game.startG );
+$('button').eq(0).on('click', function(){
+  startGame();
+} );
+$('button').eq(0).on('click', function(){
+  hide('start');
+} );
 $('button').eq(1).on('click', resultFieldUpdate );
 $('button').eq(1).on('click', roundScore );
 // >>>>>>> f30de5b5db9e83ba901c7bd8b822be16a20475b8
@@ -60,6 +67,21 @@ $('button').eq(1).on('click', roundScore );
 //console.log('document loaded');
 
 });
+
+//not used currently.
+function miniaturize(clas){
+  $('.' + clas + '').children().css('width', '50%').css('height','50%').css('font-size','50%');
+
+}
+
+function hide(classString){
+  $('.' + classString + '').css('visibility','hidden');
+
+}
+
+function show(classString){
+  $('.' + classString + '').css('visibility','visible');
+}
 
 //EVENT LISTENERS END HERE
  ////
@@ -76,21 +98,18 @@ $('button').eq(1).on('click', roundScore );
 
 function roundScore (){
 //check for wins, increment scores accordingly.
+//refactor this to functions. these two checks are identical except for player number. generalize when you have a minute. might be what was holding playerNumer back from completion.
 
 
+if($('.p1Chooser')[0].value===$('.resultField').text()  ){
 
-  if($('.p1Chooser')[0].value!==$('.resultField').text() ){//the condition here pops an error on load.
+  game.score.player1Wins++;
+  //console.log(game.score);
+  $('.currentScore1').text(game.score.player1Wins);
 
-    //console.log(game.score);
-    //console.log('p1 did not match. no points earned');
-  } else if($('.p1Chooser')[0].value===$('.resultField').text()){
-    game.score.player1Wins++;
-    //console.log(game.score);
-    $('.currentScore1').text(game.score.player1Wins);
-  } else {
-    //console.log('you are in the player1 score check land of the dead, where the living should not be.');
-  }
-//using if (!not thing){nothing} else if (thing){do stuff} else{the world is broken}
+} else{
+  //console.log('p1 did not match. no points earned');
+};
 
 
   if($('.p2Chooser')[0].value===$('.resultField').text()  ){
@@ -102,31 +121,46 @@ function roundScore (){
   } else{
     //console.log('p2 did not match. no points earned');
   }
-  //start of win check in roundScore
-if( (game.score.player1Wins >= 3) && (game.score.player2Wins >= 3) ){
-  //console.log('The game is over! You tied! The game will start over now.');
-  alert('The game is over! You tied! The game will start over now.');
-  startGame();
-} else if( game.score.player1Wins >= 3 ){
-  //console.log('Player 1 has won! Click the start button to play again.');
-  alert('Player 1 has won! Click the start button to play again');
-} else if( game.score.player2Wins >= 3 ){
-  //console.log('Player 2 has won! Click the start button to play again');
-  alert('Player 2 has won! Click the start button to play again');
-//game victory check. this will need to scale when player number is editable.
-} else {
-  //console.log('victory not yet achieved.');
-}
-  //end of win check in roundScore
+  winCheck();
 }
 //roundScore();
+  //start of win check
+  function winCheck(){
+    // console.log('winCheck was called.');
+    if( (game.score.player1Wins >= 3) && (game.score.player2Wins >= 3) ){
+    // console.log('The game is over! You tied! The game will start over now.');
+    // $('tie').css('visibility','visible'); //implement this later to avoid using alert. should have it's own "block" to color/border/style/etc. will need a button to close/hide.
+    alert('The game is over! You tied! The game will start over now.');
+    show('start');
+    startGame();
+
+  } else if( game.score.player1Wins >= 3 ){
+    // console.log('Player 1 has won! Click the start button to play again.');
+    // $('.player1win').css('visibility','visible'); //implement this later to avoid using alert. should have it's own "block" to color/border/style/etc. will need a button to close/hide.
+    alert('Player 1 has won! Click the start button to play again');
+    show('start');
+  } else if( game.score.player2Wins >= 3 ){
+    // console.log('Player 2 has won! Click the start button to play again');
+    // $('.player2win').css('visibility','visible'); //implement this later to avoid using alert. should have it's own "block" to color/border/style/etc. will need a button to close/hide.
+    alert('Player 2 has won! Click the start button to play again');
+    show('start');
+  //game victory check. this will need to scale when player number is editable.
+  } else {
+    //console.log('victory not yet achieved.');
+    return;
+  }
+  //may want to 'show' a CSS element rather than use alert() to show win. would need to be able to 'hide' the WINdow (haha...) with a click somewhere, which would need an event listener.
+  //could have 3 'hidden' elements, one for p1 win, one for p2 win, one for tie, and call each as appropriate in the above checks.
+    //end of win check
+  }
+
 
 
 
 
 function resultFieldUpdate (){
 
-  $('.resultField').css('background-color','orange');
+  $('.resultField').css('background-color','#FFBF00');
   $('.resultField').text('' + roll());
   setTimeout(delay,50);//this is apparently vanilla javascript, but i couldn't get alternate functionality working through jQuery
 }
@@ -135,7 +169,7 @@ function resultFieldUpdate (){
 //$('button').eq(0) returns a jquery object with 1 element. use this to make listeners. below may be wonky, improve.
 function delay(){
 
-  $('.resultField').css('background-color','grey'),700;
+  $('.resultField').css('background-color','#FA752A'),700;
 } //flashes the result background-color to indicate new result/successful roll
 
 function Dice(int){
