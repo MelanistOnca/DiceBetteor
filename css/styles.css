@@ -113,7 +113,7 @@ select .playerSideChooser {
 }
 
 option{
-  background-color: green;
+  /*background-color: green; this actually worked on FF, but not on chrome.*/
 }
 
 /*colors from http://www.colorpicker.com/*/
